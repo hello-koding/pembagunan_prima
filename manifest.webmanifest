@@ -1,17 +1,17 @@
 {
   "name": "Pembangunan Prima",
-  "short_name": "P Prima",
+  "short_name": "P PRIMA",
   "description": "Website Pembangunan Prima",
   "scope": "/pembangunan_prima/",
   "start_url": "/pembangunan_prima/",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
-  "display": "standalone",
+  "display": "standalone", 
   "icons": [
-    {
-      "src": "/pembangunan_prima/images/icons-192.png",
-      "type": "image/png",
-      "sizes": "700x700"
-    }
+      {
+        "src": "/github-page-pwa/imagesg/icons-512.png",
+        "type": "image/png",
+        "sizes": "700x700"
+      }
   ]
 }
