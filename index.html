@@ -336,6 +336,14 @@
     <script src="js/active.js"></script>
     <!-- pwa -->
     <script src="main.js"></script>
+      <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/github-page-pwa/sw.js',
+          {scope: '/github-page-pwa/'}
+        )
+      }
+  </script>
 
 </body>
 
