@@ -9,7 +9,7 @@
   "display": "standalone", 
   "icons": [
       {
-        "src": "/github-page-pwa/imagesg/icons-512.png",
+        "src": "/github-page-pwa/images/icons-512.png",
         "type": "image/png",
         "sizes": "700x700"
       }
