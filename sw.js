@@ -1,74 +1,20 @@
-var CACHE_NAME = 'prima-construction-cache-v3';
-var urlsToCache = [
-  '/',
-  '/index.html',
-  'offline.html'
-];
+// Change this to your repository name
+var GHPATH = '/pembangunan_prima';
 
-self.addEventListener('install', function(event) {
-  // Perform install steps
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-  );
-});
+// Choose a different app prefix name
+var APP_PREFIX = 'pprima_';
 
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.match(event.request)
-        .then(function(response) {
-          // Cache hit - return response
-          if (response) {
-            return response;
-          }
-  
-          return fetch(event.request).then(
-            function(response) {
-              // Check if we received a valid response
-              if(!response || response.status !== 200 || response.type !== 'basic') {
-                return response;
-              }
-  
-              // IMPORTANT: Clone the response. A response is a stream
-              // and because we want the browser to consume the response
-              // as well as the cache consuming the response, we need
-              // to clone it so we have two streams.
-              var responseToCache = response.clone();
-  
-              caches.open(CACHE_NAME)
-                .then(function(cache) {
-                  cache.put(event.request, responseToCache);
-                });
-  
-              return response;
-            }
-          );
-        }).catch(function () {
-            // If both fail, show a generic fallback:
-            return caches.match('/offline.html');
-            // However, in reality you'd have many different
-            // fallbacks, depending on URL and headers.
-            // Eg, a fallback silhouette image for avatars.
-          }),
-      );
-  });
+// The version of the cache. Every time you change any of the files
+// you need to change this version (version_01, version_02…). 
+// If you don't change the version, the service worker will give your
+// users the old files!
+var VERSION = 'version_00';
 
-  self.addEventListener('activate', function(event) {
-
-    var cacheAllowlist = CACHE_NAME;
-  
-    event.waitUntil(
-      caches.keys().then(function(cacheNames) {
-        return Promise.all(
-          cacheNames.map(function(cacheName) {
-            if (cacheAllowlist.indexOf(cacheName) === -1) {
-              return caches.delete(cacheName);
-            }
-          })
-        );
-      })
-    );
-  });
+// The files to make available for offline use. make sure to add 
+// others to this list
+var URLS = [
+  `${GHPATH}/`,
+  `${GHPATH}/index.html`,
+  `${GHPATH}/css/styles.css`,
+  `${GHPATH}/js/app.js`
+]
